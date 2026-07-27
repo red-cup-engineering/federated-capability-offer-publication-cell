@@ -14,7 +14,7 @@
   "license": "Apache-2.0",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/emsenn/federated-capability-offer-publication-cell.git"
+    "url": "git+https://github.com/red-cup-engineering/federated-capability-offer-publication-cell.git"
   },
   "publishConfig": {
     "access": "public",
