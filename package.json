@@ -1,0 +1,23 @@
+{
+  "name": "@red-cup-engineering/federated-capability-offer-publication-cell",
+  "version": "0.1.0",
+  "private": false,
+  "type": "module",
+  "description": "Serves one exact canonical capability offer as one public ActivityPub actor outbox without acquiring inbox, delivery-queue, or foreign publication authority.",
+  "keywords": [
+    "activitypub",
+    "capability-offer",
+    "outbox",
+    "capability-cell",
+    "rmn"
+  ],
+  "license": "Apache-2.0",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/emsenn/federated-capability-offer-publication-cell.git"
+  },
+  "publishConfig": {
+    "access": "public",
+    "provenance": true
+  }
+}
