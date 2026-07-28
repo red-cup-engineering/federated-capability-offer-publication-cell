@@ -1,0 +1,10 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["type", "code"],
+  "properties": {
+    "type": {"const": "PublicCapabilityOfferOutboxRefusal"},
+    "code": {"enum": ["invalid-material", "method-not-allowed", "route-not-owned"]}
+  }
+}

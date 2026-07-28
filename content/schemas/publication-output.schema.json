@@ -1,0 +1,11 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["status", "contentType", "body"],
+  "properties": {
+    "status": {"const": 200},
+    "contentType": {"const": "application/activity+json"},
+    "body": {"type": "object"}
+  }
+}

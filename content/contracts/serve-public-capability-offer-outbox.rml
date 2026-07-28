@@ -1,0 +1,8 @@
+#lang rmn/v2
+(map
+  ("type" "ServePublicCapabilityOfferOutboxLaw")
+  ("version" 1)
+  ("precondition" "Receive one exact actor identity and one already-authored immutable public ActivityStreams Offer projection whose actor is that identity.")
+  ("operation" "Serve the actor projection and its finite one-item ActivityPub OrderedCollection over GET without changing the supplied activity.")
+  ("postcondition" "Return byte-stable public projections with the exact actor, offer identity, RMN content identity, Agent Card, and public address preserved.")
+  ("refusal" "Refuse foreign actor material, non-public or mutable activity, inbox access, delivery, publication authorship, unsupported methods, and every route outside the exact actor and outbox."))
