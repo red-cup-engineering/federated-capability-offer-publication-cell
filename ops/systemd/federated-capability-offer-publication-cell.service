@@ -5,7 +5,7 @@ Wants=network-online.target
 
 [Service]
 Type=exec
-WorkingDirectory=/home/emsenn/info/lib/emsenn/services/561-group/services/red-cup-engineering/services/web-services-section/services/capability-marketplace-services-section/services/federated-capability-offer-publication-cell
+WorkingDirectory=/home/emsenn/info/lib/emsenn/services/561-group/services/red-cup-engineering/services/software-services-section/web-services-section/services/capability-marketplace-services-section/services/federated-capability-offer-publication-cell
 Environment=HOST=127.0.0.1
 Environment=PORT=15614
 ExecStart=/home/emsenn/.config/nvm/versions/node/v24.13.1/bin/node bin/server.mjs
