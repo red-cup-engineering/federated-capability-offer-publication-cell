@@ -22,6 +22,8 @@ test("serves the exact public offer without inbox or queue capabilities", () => 
   assert.equal(result.body.type, "OrderedCollection");
   assert.equal(result.body.totalItems, 1);
   assert.equal(result.body.orderedItems[0], activity);
+  const actorProjection = servePublicCapabilityOfferOutbox(new Request(actor), material);
+  assert.equal(actorProjection.body.attachment.href, `${origin}/.well-known/agent-card.json`);
 });
 
 test("refuses inbox and mutation routes", () => {
@@ -32,6 +34,13 @@ test("refuses inbox and mutation routes", () => {
 test("refuses a foreign or private offer before serving", () => {
   assert.throws(
     () => servePublicCapabilityOfferOutbox(new Request(`${actor}/outbox`), {...material, activity: {...activity, actor: "https://foreign.example/actor"}}),
+    /not one exact public/u,
+  );
+});
+
+test("refuses a publication that cannot name a signed Agent Card reference", () => {
+  assert.throws(
+    () => servePublicCapabilityOfferOutbox(new Request(`${actor}/outbox`), {...material, activity: {...activity, attachment: {...activity.attachment, href: "not a URL"}}}),
     /not one exact public/u,
   );
 });

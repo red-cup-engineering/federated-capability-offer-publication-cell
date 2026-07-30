@@ -17,11 +17,18 @@ export function servePublicCapabilityOfferOutbox(request, material) {
   const outbox = `${actor}/outbox`;
   const activity = material.activity;
   const addressed = Array.isArray(activity?.to) ? activity.to : [activity?.to];
+  let agentCard;
+  try {
+    agentCard = new URL(activity?.attachment?.href);
+  } catch {
+    agentCard = undefined;
+  }
   if (activity?.type !== "Offer" || activity.actor !== actor || typeof activity.id !== "string"
       || !PUBLIC.has(addressed[0]) || addressed.length !== 1
       || activity.object?.mediaType !== "application/rmn+cbor"
       || !/^ni:\/\/\/sha-256;[A-Za-z0-9_-]{43}$/u.test(activity.object?.name ?? "")
-      || activity.attachment?.name !== "A2A Agent Card") {
+      || activity.attachment?.name !== "A2A Agent Card" || activity.attachment?.mediaType !== "application/json"
+      || !agentCard || (agentCard.protocol !== "https:" && agentCard.hostname !== "127.0.0.1" && agentCard.hostname !== "localhost")) {
     throw new TypeError("publication material is not one exact public RMN capability Offer");
   }
   if (request.method !== "GET") {
@@ -34,6 +41,7 @@ export function servePublicCapabilityOfferOutbox(request, material) {
     return Object.freeze({status: 200, contentType: ACTIVITYPUB, body: Object.freeze({
       "@context": CONTEXT, id: actor, type: "Service", preferredUsername: material.identifier,
       name: material.name, summary: material.summary, outbox,
+      attachment: Object.freeze({type: "Link", name: "A2A Agent Card", mediaType: "application/json", href: agentCard.href}),
     })});
   }
   if (url.pathname === new URL(outbox).pathname) {
