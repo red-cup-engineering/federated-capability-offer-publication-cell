@@ -24,10 +24,10 @@
     ".": "./src/serve-public-capability-offer-outbox.mjs"
   },
   "bin": {
-    "serve-public-capability-offer-outbox": "./bin/server.mjs"
+    "serve-public-capability-offer-outbox": "./scripts/server.mjs"
   },
   "scripts": {
-    "check": "node --check src/serve-public-capability-offer-outbox.mjs && node --check bin/server.mjs",
+    "check": "node --check src/serve-public-capability-offer-outbox.mjs && node --check scripts/server.mjs",
     "test": "node --test test/*.test.mjs",
     "verify": "npm run check && npm test && npm pack --dry-run"
   },
